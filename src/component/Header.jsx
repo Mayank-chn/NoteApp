@@ -16,6 +16,7 @@ function Header() {
 
  function increase(){
     console.log("i got clicked");
+    alert("i got clicked");
     handleIncrease();
  } 
 
