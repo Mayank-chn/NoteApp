@@ -29,17 +29,17 @@ function Header() {
               <a href="/home">Home</a>
             </li>
             <li>
-              <a href="/home">About</a>
+              <a href="/about">About</a>
             </li>
             <li>
-              <a href="MAYANK CHAUHAN\KeeperApp\src\component\Form.jsx">Login</a>
+              <a href="/login">Login</a>
             </li>
           </ul>
         </nav>
       </div>
       <div style={{ display: "flex" }}>
         <button className='menu ' onClick={increase}>
-          <BsMenuButtonWideFill size={25} /> 
+        <BsMenuButtonWideFill size={25}  />
         </button>
       </div>
     </header>
