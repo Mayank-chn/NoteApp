@@ -3,48 +3,54 @@ import React, { useState } from 'react'
 //import { IoMenuOutline } from "react-icons/io5"
 //import { FaHome } from 'react-icons/fa' 
 import { BsMenuButtonWideFill } from "react-icons/bs";
-import Form from './Form';
+//import Form from './Form';
+import {useEffect, useRef} from 'react';
+import Nav from './Nav';
 
 //var userIsRegistered = true;
 
 function Header() {
- const [count, setCount] = useState(0);
+  const [open, setOpen] = useState(false);
+  
+  let menuRef = useRef();
 
- function handleIncrease() {
-    setCount(count + 1);
- }
+  useEffect(() => {
+    let handler = (e)=>{
+      if(!menuRef.current.contains(e.target)){
+        setOpen(false);
+        console.log(menuRef.current);
+      }      
+    };
+    document.addEventListener("mousedown", handler);
+    
 
- function increase(){
-    console.log("i got clicked");
-    alert("i got clicked");
-    handleIncrease();
- } 
+    return() =>{
+      document.removeEventListener("mousedown", handler);
+    }
 
- return (
-    <header>
-      <h1> Keeper</h1>
-      <div id="main-navbar" className="navbar">
-      <nav>
-          <ul>
-            <li>
-              <a href="/home">Home</a>
-            </li>
-            <li>
-              <a href="/about">About</a>
-            </li>
-            <li>
-              <a href="/login">Login</a>
-            </li>
-          </ul>
-        </nav>
-      </div>
-      <div style={{ display: "flex" }}>
-        <button className='menu ' onClick={increase}>
-        <BsMenuButtonWideFill size={25}  />
-        </button>
-      </div>
-    </header>
- )
+});
+
+
+return (
+  
+      <div className="App">
+  <div className='menu-container' ref={menuRef}>
+  <header>
+  <h1>Header</h1>
+  <div className='menu-trigger' onClick={()=>{setOpen(!open)}}>
+    <button className='menu' ><BsMenuButtonWideFill size={25}  /></button>
+    </div>
+  <div className={`dropdown ${open? 'active' : 'inactive'}`} >
+    <Nav/>
+    
+  </div>
+  </header>
+  </div>
+</div>
+  
+)
+
+  
 }
 
 export default Header

@@ -2,7 +2,10 @@ import React, {useState } from 'react'
 import Header from './Header'
 import Footer from './Footer'
 import Notes from './Notes'
+import AboutUs from './Menu/AboutUs'
+import Fedback from './Menu/Fedback'
 import CreateArea from './CreateArea'
+import { Routes, Route } from 'react-router-dom';
 
 function App() {
 
@@ -28,13 +31,14 @@ function App() {
   return (
     <div >
       <Header/>
-      {/* <Notes
-      title="hi"
-      content="hello"
-      /> */}
-      <CreateArea 
+      <Routes>
+        <Route path="/notes" element={<CreateArea 
       onAdd={addNote}
-       />
+       />}/>
+        <Route path="/about" element={<AboutUs/>}/>
+        <Route path="/fdbk" element={<Fedback/>}/>      
+      </Routes>
+      
        {notes.map((noteItem, index) => {
         return <Notes key={index} id={index} title={noteItem.title} content={noteItem.content} onDelete={deleteNote}/>
        })}
